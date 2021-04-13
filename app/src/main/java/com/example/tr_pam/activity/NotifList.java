@@ -20,7 +20,7 @@ import com.example.tr_pam.storage.DBHelperNotif;
 import java.util.ArrayList;
 
 public class NotifList extends AppCompatActivity {
-    private static final String TAG = "ListDataActivity";
+    private static final String TAG = "NotifList";
 
     DBHelperNotif dbHelperNotif;
 
@@ -49,7 +49,7 @@ public class NotifList extends AppCompatActivity {
             listData.add(data.getString(2));
         }
         //create the list adapter and set the adapter
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.two_line_list_item, listData);
+        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
         mListView.setAdapter(adapter);
 
         //set an onItemClickListener to the ListView
