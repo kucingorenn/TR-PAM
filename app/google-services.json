@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "32436604193",
+    "project_id": "tr-pam-e10bb",
+    "storage_bucket": "tr-pam-e10bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32436604193:android:f21acb27abcaafffdd0260",
+        "android_client_info": {
+          "package_name": "com.example.tr_pam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32436604193-uo9399hoe4gvv0ih7ht73v4ra9mhf64p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxWbrmqnIsamM-gfpIoncYMkWZH6-ZcwM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32436604193-uo9399hoe4gvv0ih7ht73v4ra9mhf64p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
