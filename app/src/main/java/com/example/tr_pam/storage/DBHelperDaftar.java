@@ -7,6 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.tr_pam.Peserta;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelperDaftar extends SQLiteOpenHelper {
     private static final String TAG = "DatabaseHelper";
 
@@ -107,5 +112,27 @@ public class DBHelperDaftar extends SQLiteOpenHelper {
         Log.d(TAG, "deleteName: query: " + query);
 
         db.execSQL(query);
+    }
+
+    public List<Peserta> getAllData(){
+        SQLiteDatabase db = getReadableDatabase();
+        List<Peserta> datas = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Peserta kamus = new Peserta();
+
+                kamus.setId(Integer.parseInt(cursor.getString(0)));
+                kamus.setNama(cursor.getString(1));
+                kamus.setJenisKelamin(cursor.getString(2));
+                kamus.setUmur(cursor.getString(3));
+
+                datas.add(kamus);
+            }
+            while (cursor.moveToNext());
+        }
+        return datas;
     }
 }

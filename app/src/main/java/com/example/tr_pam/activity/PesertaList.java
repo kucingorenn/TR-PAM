@@ -9,21 +9,27 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
+import com.example.tr_pam.Peserta;
 import com.example.tr_pam.R;
 import com.example.tr_pam.storage.DBHelperDaftar;
-import com.example.tr_pam.storage.DBHelperNotif;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class PesertaList extends AppCompatActivity {
     private static final String TAG = "PesertaList";
 
     DBHelperDaftar dbHelperDaftar;
     ListView lvPeserta;
+
+    private List<Peserta> words = new ArrayList<>();
+    private ArrayList<HashMap<String, String>>
+            list = new ArrayList<HashMap<String, String>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +57,10 @@ public class PesertaList extends AppCompatActivity {
             listData.add(data.getString(3));
         }
         //create the list adapter and set the adapter
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        lvPeserta.setAdapter(adapter);
+        //ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        //lvPeserta.setAdapter(adapter);
+
+        loadKata();
 
         //set an onItemClickListener to the ListView
         lvPeserta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -103,5 +111,36 @@ public class PesertaList extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void loadKata(){
+        words.clear();
+        words = dbHelperDaftar.getAllData();
+
+        String[] ArrayNama = new String[words.size()];
+        String[] ArrayJenKel = new String[words.size()];
+        String[] ArrayUmur = new String[words.size()];
+
+        for (int x = 0; x < words.size(); x++) {
+            ArrayNama[x] = words.get(x).getNama();
+            ArrayJenKel[x] = words.get(x).getJenisKelamin();
+            ArrayUmur[x] = words.get(x).getUmur();
+
+        }
+
+        for (int i=words.size()-1;i>=0;i--){
+            HashMap<String, String> contact = new HashMap<>();
+            contact.put("nama",ArrayNama[i]);
+            contact.put("jenkel",ArrayJenKel[i]);
+            contact.put("umur",ArrayUmur[i]);
+
+            list.add(contact);
+        }
+
+        ListAdapter listadapter = new SimpleAdapter(
+                PesertaList.this, list,R.layout.list_peserta,
+                new String[]{"nama","jenkel","umur"},
+                new int[]{R.id.lsNama,R.id.lsJenisKelamin,R.id.lsUmur});
+        lvPeserta.setAdapter(listadapter);
     }
 }

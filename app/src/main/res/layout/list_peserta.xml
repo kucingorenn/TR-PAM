@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/lsNama"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:paddingTop="6dip"
+        android:paddingBottom="10dip"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:text="Nama"/>
+
+    <TextView
+        android:id="@+id/lsJenisKelamin"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lsNama"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:paddingBottom="2dip"
+        android:text="Jenis Kelamin"/>
+
+    <TextView
+        android:id="@+id/lsUmur"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lsJenisKelamin"
+        android:layout_alignStart="@+id/lsJenisKelamin"
+        android:layout_alignLeft="@+id/lsJenisKelamin"
+        android:layout_marginStart="0dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="6dp"
+        android:text="Umur" />
+
+
+</RelativeLayout>

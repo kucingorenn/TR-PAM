@@ -26,13 +26,11 @@
         android:inputType="textPersonName"
         android:hint="Nama" />
 
-    <EditText
-        android:id="@+id/editJenisKelamin"
+    <Spinner
+        android:id="@+id/spinnerJenisKelamin"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Jenis Kelamin" />
+        android:layout_height="38dp"
+        android:entries="@array/jeniskelamin"/>
 
     <EditText
         android:id="@+id/editUmur"

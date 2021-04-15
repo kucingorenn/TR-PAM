@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private BroadcastReceiver mRegistrationBroadcastReceiver;
     private TextView txtRegID, txtMessage;
     DBHelperNotif dbHelperNotif;
-    Button btNotif, btDaftar, btPeserta;
+    Button btNotif, btDaftar, btPeserta, btMusik;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         btNotif = (Button) findViewById(R.id.buttonHistoryNotif);
         btDaftar = (Button) findViewById(R.id.buttonGoDaftar);
         btPeserta = (Button) findViewById(R.id.buttonPeserta);
+        btMusik = (Button) findViewById(R.id.buttonMusik);
 
         dbHelperNotif = new DBHelperNotif(this);
         String message, message1;
@@ -86,7 +87,8 @@ public class MainActivity extends AppCompatActivity {
         btNotif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(MainActivity.this, NotifList.class);
+                startActivity(intent);
             }
         });
 
@@ -106,6 +108,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btMusik.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Musik.class);
+                startActivity(intent);
+            }
+        });
+
         displayFirebaseRegId();
     }
 
@@ -113,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
         boolean insertData = dbHelperNotif.addData(newEntry, newEntry1);
 
         if(insertData){
-            Intent intent = new Intent(MainActivity.this, NotifList.class);
-            startActivity(intent);
+
         }else{
 
         }

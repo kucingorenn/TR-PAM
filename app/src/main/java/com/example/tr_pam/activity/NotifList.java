@@ -13,11 +13,16 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
+import com.example.tr_pam.Notifikasi;
+import com.example.tr_pam.Peserta;
 import com.example.tr_pam.R;
 import com.example.tr_pam.storage.DBHelperNotif;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class NotifList extends AppCompatActivity {
     private static final String TAG = "NotifList";
@@ -25,6 +30,10 @@ public class NotifList extends AppCompatActivity {
     DBHelperNotif dbHelperNotif;
 
     private ListView mListView;
+
+    private List<Notifikasi> notifs = new ArrayList<>();
+    private ArrayList<HashMap<String, String>>
+            list = new ArrayList<HashMap<String, String>>();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -49,8 +58,10 @@ public class NotifList extends AppCompatActivity {
             listData.add(data.getString(2));
         }
         //create the list adapter and set the adapter
-        ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        mListView.setAdapter(adapter);
+        //ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
+        //mListView.setAdapter(adapter);
+
+        loadNotif();
 
         //set an onItemClickListener to the ListView
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -100,5 +111,33 @@ public class NotifList extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void loadNotif(){
+        notifs.clear();
+        notifs = dbHelperNotif.getAllData();
+
+        String[] ArrayTitle = new String[notifs.size()];
+        String[] ArrayBody = new String[notifs.size()];
+
+        for (int x = 0; x < notifs.size(); x++) {
+            ArrayTitle[x] = notifs.get(x).getTitle();
+            ArrayBody[x] = notifs.get(x).getBody();
+
+        }
+
+        for (int i=notifs.size()-1;i>=0;i--){
+            HashMap<String, String> contact = new HashMap<>();
+            contact.put("title",ArrayTitle[i]);
+            contact.put("body",ArrayBody[i]);
+
+            list.add(contact);
+        }
+
+        ListAdapter listadapter = new SimpleAdapter(
+                NotifList.this, list,R.layout.list_notif,
+                new String[]{"title","body"},
+                new int[]{R.id.lsTitle,R.id.lsBody});
+        mListView.setAdapter(listadapter);
     }
 }

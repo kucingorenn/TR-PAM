@@ -7,10 +7,16 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import com.example.tr_pam.Notifikasi;
+import com.example.tr_pam.Peserta;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class DBHelperNotif extends SQLiteOpenHelper {
     private static final String TAG = "DatabaseHelper";
 
-    private static final String TABLE_NAME = "Notification";
+    private static final String TABLE_NAME = "Notification1";
     private static final String COL1 = "ID";
     private static final String COL2 = "title";
     private static final String COL3 = "body";
@@ -29,7 +35,7 @@ public class DBHelperNotif extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP IF TABLE EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
@@ -105,5 +111,26 @@ public class DBHelperNotif extends SQLiteOpenHelper {
         Log.d(TAG, "deleteName: query: " + query);
 
         db.execSQL(query);
+    }
+
+    public List<Notifikasi> getAllData(){
+        SQLiteDatabase db = getReadableDatabase();
+        List<Notifikasi> data = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Notifikasi notif = new Notifikasi();
+
+                notif.setId(Integer.parseInt(cursor.getString(0)));
+                notif.setTitle(cursor.getString(1));
+                notif.setBody(cursor.getString(2));
+
+                data.add(notif);
+            }
+            while (cursor.moveToNext());
+        }
+        return data;
     }
 }
