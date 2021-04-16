@@ -52,9 +52,11 @@ public class Musik extends AppCompatActivity {
         }
 
         songAllTime.setText(String.format("%d:%d", TimeUnit.MILLISECONDS.toMinutes(endTime),
-                TimeUnit.MILLISECONDS.toSeconds(endTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(endTime))));
+                TimeUnit.MILLISECONDS.toSeconds(endTime) - TimeUnit.MINUTES.toSeconds(TimeUnit
+                        .MILLISECONDS.toMinutes(endTime))));
         songStartTime.setText(String.format("%d:%d", TimeUnit.MILLISECONDS.toMinutes(startTime),
-                TimeUnit.MILLISECONDS.toSeconds(startTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(startTime))));
+                TimeUnit.MILLISECONDS.toSeconds(startTime) - TimeUnit.MINUTES.toSeconds(TimeUnit
+                        .MILLISECONDS.toMinutes(startTime))));
         songPrgs.setProgress(startTime);
         hdlr.postDelayed(UpdateSongTime, 100);
 
@@ -82,10 +84,16 @@ public class Musik extends AppCompatActivity {
         public void run() {
             startTime = mPlayer.getCurrentPosition();
             songStartTime.setText(String.format("%d:%d", TimeUnit.MILLISECONDS.toMinutes(startTime),
-                    TimeUnit.MILLISECONDS.toSeconds(startTime) - TimeUnit.MINUTES.toSeconds(TimeUnit.MILLISECONDS.toMinutes(startTime))));
+                    TimeUnit.MILLISECONDS.toSeconds(startTime) - TimeUnit.MINUTES.toSeconds(TimeUnit
+                            .MILLISECONDS.toMinutes(startTime))));
             songPrgs.setProgress(startTime);
             hdlr.postDelayed(this, 100);
         }
     };
 
 }
+
+
+
+
+

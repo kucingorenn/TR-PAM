@@ -4,12 +4,6 @@ public class Peserta {
     int id;
     String nama, umur, jenisKelamin;
 
-    public Peserta(String nama, String umur, String jenisKelamin){
-        this.nama = nama;
-        this.umur = umur;
-        this.jenisKelamin = jenisKelamin;
-    }
-
     public Peserta() {
 
     }

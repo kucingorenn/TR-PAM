@@ -62,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
                     String message1 = intent.getStringExtra("title");
                     AddData(message1,message);
 
-                    Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Push notification: " +
+                            message, Toast.LENGTH_LONG).show();
 
                     Log.e(TAG, "Firebase reg id: " + message);
                 }
@@ -124,7 +125,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayFirebaseRegId() {
-        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF, 0);
+        SharedPreferences pref = getApplicationContext().getSharedPreferences(Config.SHARED_PREF,
+                0);
         String regId = pref.getString("regId", null);
 
         Log.e(TAG, "Firebase reg id: " + regId);

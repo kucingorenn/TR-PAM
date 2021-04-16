@@ -28,7 +28,8 @@ public class DBHelperNotif extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY" +
+                " AUTOINCREMENT, " +
                 COL2 +" TEXT, " + COL3 +" TEXT )";
         db.execSQL(createTable);
     }
@@ -132,5 +133,13 @@ public class DBHelperNotif extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         return data;
+    }
+
+    public void delteAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME;
+        Log.d(TAG, "Delete all: query: " + query);
+
+        db.execSQL(query);
     }
 }

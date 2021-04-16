@@ -59,9 +59,6 @@ public class NotifList extends AppCompatActivity {
             listData.add(data.getString(1));
             listData.add(data.getString(2));
         }
-        //create the list adapter and set the adapter
-        //ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        //mListView.setAdapter(adapter);
 
         loadNotif();
 
@@ -69,7 +66,7 @@ public class NotifList extends AppCompatActivity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                final CharSequence[] items = {"View", "Delete"};
+                final CharSequence[] items = {"View", "Delete", "Delete All"};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(NotifList.this);
                 dialog.setTitle("Choose an action");
                 dialog.setItems(items, new DialogInterface.OnClickListener() {
@@ -107,6 +104,12 @@ public class NotifList extends AppCompatActivity {
                             startActivity(getIntent());
                         }
 
+                        if(i==2){
+                            //delete all
+                            dbHelperNotif.delteAll();
+                            finish();
+                            startActivity(getIntent());
+                        }
                     }
                 });
                 dialog.show();
@@ -143,3 +146,14 @@ public class NotifList extends AppCompatActivity {
         mListView.setAdapter(listadapter);
     }
 }
+
+
+
+
+
+
+
+
+
+
+

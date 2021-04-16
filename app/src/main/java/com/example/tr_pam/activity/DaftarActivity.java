@@ -41,7 +41,8 @@ public class DaftarActivity extends AppCompatActivity {
                 String umur = edUmur.getText().toString();
                 dbHelperDaftar.addData(nama, jenkel, umur);
 
-                Toast.makeText(DaftarActivity.this, "Data " + nama + " telah berhasil di input",
+                Toast.makeText(DaftarActivity.this, "Data " + nama +
+                                " telah berhasil di input",
                         Toast.LENGTH_SHORT).show();
             }
         });

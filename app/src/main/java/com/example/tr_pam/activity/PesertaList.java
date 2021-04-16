@@ -57,9 +57,6 @@ public class PesertaList extends AppCompatActivity {
             listData.add(data.getString(2));
             listData.add(data.getString(3));
         }
-        //create the list adapter and set the adapter
-        //ListAdapter adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, listData);
-        //lvPeserta.setAdapter(adapter);
 
         loadKata();
 
@@ -67,7 +64,7 @@ public class PesertaList extends AppCompatActivity {
         lvPeserta.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                final CharSequence[] items = {"View", "Delete"};
+                final CharSequence[] items = {"View", "Delete", "Delete All"};
                 AlertDialog.Builder dialog = new AlertDialog.Builder(PesertaList.this);
                 dialog.setTitle("Choose an action");
                 dialog.setItems(items, new DialogInterface.OnClickListener() {
@@ -106,6 +103,13 @@ public class PesertaList extends AppCompatActivity {
                             startActivity(getIntent());
                         }
 
+                        if (i==2) {
+                            //delete all
+                            dbHelperDaftar.delteAll();
+                            finish();
+                            startActivity(getIntent());
+                        }
+
                     }
                 });
                 dialog.show();
@@ -126,7 +130,6 @@ public class PesertaList extends AppCompatActivity {
             ArrayNama[x] = words.get(x).getNama();
             ArrayJenKel[x] = words.get(x).getJenisKelamin();
             ArrayUmur[x] = words.get(x).getUmur();
-
         }
 
         for (int i=words.size()-1;i>=0;i--){
@@ -134,7 +137,6 @@ public class PesertaList extends AppCompatActivity {
             contact.put("nama",ArrayNama[i]);
             contact.put("jenkel",ArrayJenKel[i]);
             contact.put("umur",ArrayUmur[i]);
-
             list.add(contact);
         }
 
@@ -145,3 +147,11 @@ public class PesertaList extends AppCompatActivity {
         lvPeserta.setAdapter(listadapter);
     }
 }
+
+
+
+
+
+
+
+

@@ -28,14 +28,15 @@ public class DBHelperDaftar extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, " +
+        String createTable = "CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY" +
+                " AUTOINCREMENT, " +
                 COL2 +" TEXT, " + COL3 +" TEXT, " + COL4 + " TEXT )";
         db.execSQL(createTable);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int i, int i1) {
-        db.execSQL("DROP IF TABLE EXISTS " + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 
@@ -134,5 +135,13 @@ public class DBHelperDaftar extends SQLiteOpenHelper {
             while (cursor.moveToNext());
         }
         return datas;
+    }
+
+    public void delteAll(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_NAME;
+        Log.d(TAG, "Delete all: query: " + query);
+
+        db.execSQL(query);
     }
 }
