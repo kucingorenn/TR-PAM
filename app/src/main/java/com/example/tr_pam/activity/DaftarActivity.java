@@ -23,6 +23,7 @@ public class DaftarActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_daftar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         edNama = (EditText) findViewById(R.id.editNama);
         spJenKel = (Spinner) findViewById(R.id.spinnerJenisKelamin);

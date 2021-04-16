@@ -8,6 +8,17 @@
     android:orientation="vertical"
     android:layout_margin="15dp">
 
+    <TextView
+        android:id="@+id/textNotif5"
+        android:layout_width="match_parent"
+        android:layout_height="82dp"
+        android:fontFamily="casual"
+        android:gravity="center_horizontal"
+        android:text="Daftar Peserta"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
     <ListView
         android:id="@+id/listViewPeserta"
         android:layout_width="match_parent"

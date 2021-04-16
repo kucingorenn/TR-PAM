@@ -39,6 +39,8 @@ public class NotifList extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notif_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         mListView = (ListView) findViewById(R.id.listView);
         dbHelperNotif = new DBHelperNotif(this);
 

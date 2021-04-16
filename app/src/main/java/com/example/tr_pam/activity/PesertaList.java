@@ -35,6 +35,7 @@ public class PesertaList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_peserta_list);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         lvPeserta = (ListView) findViewById(R.id.listViewPeserta);
 

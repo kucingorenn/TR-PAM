@@ -11,10 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TRPAM">
-        <activity android:name=".activity.PesertaList"></activity>
-        <activity android:name=".activity.DaftarActivity" />
-        <activity android:name=".activity.NotifList" />
-        <activity android:name=".activity.Musik" />
+        <activity android:name=".activity.PesertaList"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity android:name=".activity.DaftarActivity"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity android:name=".activity.NotifList"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity android:name=".activity.Musik"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
+        <activity android:name=".activity.Video"
+            android:parentActivityName=".activity.MainActivity">
+        </activity>
         <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,6 +44,10 @@
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

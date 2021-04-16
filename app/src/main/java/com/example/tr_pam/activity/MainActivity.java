@@ -16,6 +16,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,37 +26,22 @@ import com.google.firebase.messaging.FirebaseMessaging;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName();
     private BroadcastReceiver mRegistrationBroadcastReceiver;
-    private TextView txtRegID, txtMessage;
     DBHelperNotif dbHelperNotif;
-    Button btNotif, btDaftar, btPeserta, btMusik;
+    ImageButton btNotif, btDaftar, btPeserta, btMusik, btVideo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtMessage = (TextView) findViewById(R.id.textNotif);
-        txtRegID = (TextView) findViewById(R.id.textRegID);
 
-        btNotif = (Button) findViewById(R.id.buttonHistoryNotif);
-        btDaftar = (Button) findViewById(R.id.buttonGoDaftar);
-        btPeserta = (Button) findViewById(R.id.buttonPeserta);
-        btMusik = (Button) findViewById(R.id.buttonMusik);
+        btNotif = (ImageButton) findViewById(R.id.buttonHistoryNotif);
+        btDaftar = (ImageButton) findViewById(R.id.buttonGoDaftar);
+        btPeserta = (ImageButton) findViewById(R.id.buttonPeserta);
+        btMusik = (ImageButton) findViewById(R.id.buttonMusik);
+        btVideo = (ImageButton) findViewById(R.id.buttonVideo);
 
         dbHelperNotif = new DBHelperNotif(this);
-        String message, message1;
-
-        if(getIntent().getExtras()!=null){
-            txtMessage.setText("");
-            message = getIntent().getExtras().getString("title");
-            message1 = getIntent().getExtras().getString("body");
-            if(message==null && message1 == null)
-            {
-                message = "No new messages";
-            }
-            AddData(message1, message);
-            txtMessage.setText(message);
-        }
 
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -78,7 +64,6 @@ public class MainActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "Push notification: " + message, Toast.LENGTH_LONG).show();
 
-                    txtMessage.setText(message);
                     Log.e(TAG, "Firebase reg id: " + message);
                 }
             }
@@ -116,6 +101,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        btVideo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Video.class);
+                startActivity(intent);
+            }
+        });
+
         displayFirebaseRegId();
     }
 
@@ -135,11 +128,6 @@ public class MainActivity extends AppCompatActivity {
         String regId = pref.getString("regId", null);
 
         Log.e(TAG, "Firebase reg id: " + regId);
-
-        if (!TextUtils.isEmpty(regId))
-            txtRegID.setText("Firebase Reg Id: " + regId);
-        else
-            txtRegID.setText("Firebase Reg Id is not received yet!");
     }
 
     @Override

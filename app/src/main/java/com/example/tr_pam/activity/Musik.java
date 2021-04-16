@@ -30,11 +30,12 @@ public class Musik extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_musik);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         songName = findViewById(R.id.title_song);
-        songName.setText("");
+        songName.setText("Lagu Anak");
 
-        mPlayer = MediaPlayer.create(this, R.raw.afgan);
+        mPlayer = MediaPlayer.create(this, R.raw.imunisasi);
 
         playbtn = findViewById(R.id.bt_play);
 
@@ -65,9 +66,10 @@ public class Musik extends AppCompatActivity {
                     playbtn.setImageResource(R.drawable.ic_baseline_pause_24);
 
                 } else {
-                    mPlayer.pause();
-                    playbtn.setImageResource(R.drawable.ic_baseline_play_arrow_24);
-
+                    if(mPlayer != null) {
+                        mPlayer.pause();
+                        playbtn.setImageResource(R.drawable.ic_baseline_play_arrow_24);
+                    }
                 }
 
             }
